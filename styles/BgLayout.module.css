@@ -1,0 +1,17 @@
+.container {
+    min-height: calc(100vh - 48px);
+    background-color: hsl(30, 17%, 98%);
+    width: 360px;
+    float: right;
+    padding-inline: 1rem;
+    cursor: default;
+    overflow-y: auto;
+    max-height: calc(100vh - 75px);
+    box-shadow: -5px 0px 10px -6px hsl(30, 17%, 89%);
+}
+
+@media screen and (max-width: 400px) {
+    .container {
+        width: 320px;
+    }
+}
