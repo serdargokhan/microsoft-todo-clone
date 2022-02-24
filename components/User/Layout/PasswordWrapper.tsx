@@ -1,6 +1,6 @@
 import Image from "next/image";
 // CSS
-import classes from "styles/Signup.module.css";
+import classes from "styles/Signup.module.scss";
 // Components
 import ErrorMessage from "components/UI/ErrorMessage";
 // Images

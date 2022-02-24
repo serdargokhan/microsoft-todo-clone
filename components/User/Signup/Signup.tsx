@@ -4,7 +4,7 @@ import Head from "next/head";
 // Context
 import { useCtx } from "components/context/AuthContext";
 // CSS
-import classes from "styles/Signup.module.css";
+import classes from "styles/Signup.module.scss";
 // Components
 import Input from "components/utils/Input";
 import SignupContinue from "./SignupContinue";

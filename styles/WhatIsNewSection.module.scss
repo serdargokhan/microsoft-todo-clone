@@ -1,0 +1,91 @@
+@use "./colors";
+@use "./mixins";
+
+.head {
+    @include mixins.flexContainer(space-between);
+    padding-block: 1.25rem;
+}
+
+.container {
+    background-color: colors.$white;
+    margin-bottom: 1.25rem;
+    border-radius: 5px;
+    box-shadow: 1px 1px 13px 0px colors.$white-400;
+
+    img {
+        border-top-left-radius: 5px;
+    }
+}
+
+.info {
+    color: colors.$black-100;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding-block: 0.8rem;
+}
+
+.btn {
+    margin-block: 1rem;
+    background-color: colors.$white;
+    border: none;
+    color: colors.$blue-400;
+    font-size: 0.85rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.message {
+    color: colors.$gray-200;
+    font-size: 0.85rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-inline: 1rem;
+}
+
+.smallIcons {
+    padding-top: 0.8rem;
+}
+
+.flex {
+    @include mixins.flexContainer(space-between);
+    border: 1px solid colors.$gray-500;
+    border-bottom: 0;
+    padding: 0.5rem 0.75rem;
+
+    p {
+        font-size: 0.85rem;
+    }
+}
+
+.footerIcons {
+    @include mixins.flexContainer();
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: colors.$black-100;
+}
+
+.mdl2-cancel,
+.mdl2-brightness {
+    @include mixins.icons(colors.$black-100);
+    cursor: pointer;
+}
+
+.mdl2-cancel::before {
+    content: "\e711";
+}
+
+.mdl2-brightness::before {
+    content: "\e706";
+}

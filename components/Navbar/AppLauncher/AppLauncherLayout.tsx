@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
 // CSS
-import classes from "styles/AppLauncher.module.css";
+import classes from "styles/AppLauncher.module.scss";
 // Images
 import SVG from "components/assets/SVGs";
 

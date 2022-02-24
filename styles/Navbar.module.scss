@@ -1,0 +1,273 @@
+@use "./colors";
+@use "./mixins";
+
+.navbar {
+    background-color: colors.$blue-300;
+    display: grid;
+    grid-template-columns: 48px 1fr 48px;
+    height: 48px;
+
+    button {
+        background-color: transparent;
+        border: none;
+        width: 48px;
+        height: 48px;
+
+        &:hover {
+            background-color: colors.$blue-500;
+            cursor: pointer;
+        }
+    }
+}
+
+.appLauncher {
+    line-height: 10px;
+}
+
+.appLauncher:active,
+.navbarButtons button:active,
+.circleCenter:active {
+    box-shadow: inset 0px 0px 0px 1px colors.$white;
+    background-color: colors.$blue-700;
+}
+
+.title {
+    color: colors.$white;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 0.6rem;
+    cursor: pointer;
+    line-height: 6px;
+}
+
+.middle {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    overflow: hidden;
+}
+
+.flex {
+    @include mixins.flexContainer(flex-start);
+}
+
+.searchField {
+    height: 32px;
+    display: none;
+}
+
+.show {
+    input {
+        display: inline;
+        width: 90%;
+        background-color: colors.$white-200;
+        outline: none;
+        border: none;
+        padding-left: 0.2rem;
+    }
+
+    .searchButton:hover {
+        background-color: colors.$white !important;
+    }
+}
+
+.show > * {
+    background-color: colors.$white-100 !important;
+}
+
+.show:hover > * {
+    background-color: colors.$white-100;
+    outline: 1px solid colors.$white-100;
+}
+
+.searchButton {
+    @include mixins.flexContainer();
+    width: 32px;
+    height: 32px;
+    background-color: colors.$white-200;
+    position: relative;
+    border-radius: 2px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: colors.$white;
+        outline: 1px solid colors.$white;
+    }
+
+    img {
+        transform: rotateY(180deg);
+    }
+}
+
+.tooltipText {
+    visibility: hidden;
+    width: 60px;
+    font-weight: 400;
+    font-size: 0.75rem;
+    background-color: colors.$white !important;
+    color: colors.$black;
+    text-align: center;
+    border-radius: 0.1rem;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1000;
+    left: 57px;
+    transition: none;
+    outline: none !important;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        margin-top: -10px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent transparent colors.$white;
+    }
+}
+
+.flex:hover .tooltipText {
+    visibility: visible;
+    transition: visibility 0.3s ease-in-out 0.4s;
+}
+
+.close {
+    @include mixins.flexContainer();
+    @include mixins.borderRadius(0, 0, 2px, 2px);
+    height: 32px;
+    background-color: colors.$white-200;
+    padding-right: 0.3rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.radius {
+    @include mixins.borderRadius(2px, 2px, 0, 0);
+}
+
+.circle {
+    @include mixins.flexContainer();
+    color: colors.$white;
+    border: 1px solid colors.$white;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+}
+
+.circleCenter {
+    @include mixins.flexContainer();
+}
+
+.active > * {
+    background-color: colors.$white-300;
+    color: colors.$black !important;
+    height: 48px;
+}
+
+.active:hover > * {
+    color: colors.$white !important;
+    background-color: colors.$blue-700;
+}
+
+.mdl2-settings,
+.mdl2-help,
+.mdl2-megaphone {
+    @include mixins.icons(colors.$white);
+    line-height: 48px;
+}
+
+.mdl2-settings::before {
+    content: "\e713";
+}
+
+.mdl2-help::before {
+    content: "\e897";
+}
+
+.mdl2-megaphone::before {
+    content: "\e789";
+}
+
+@media screen and (max-width: 420px) {
+    .navbar {
+        grid-template-columns: 35px 1fr 48px;
+    }
+
+    .title {
+        margin-left: 0.5rem;
+    }
+
+    .tooltipText {
+        left: 11.5%;
+    }
+
+    .navbar .appLauncher {
+        width: 35px;
+    }
+
+    .show input {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .middle,
+    .flex {
+        @include mixins.flexContainer(space-between);
+        position: relative;
+    }
+
+    .flex {
+        width: 400px;
+        margin-left: 0.9rem;
+    }
+
+    .tooltipText {
+        left: -17.5%;
+    }
+
+    .searchButton {
+        position: unset;
+        @include mixins.borderRadius(2px, 2px, 0, 0);
+    }
+
+    .searchField {
+        display: inline;
+        width: 95%;
+        background-color: colors.$white-200;
+        outline: none;
+        border: none;
+        padding-left: 0.4rem;
+        @include mixins.borderRadius(0, 0, 2px, 2px);
+    }
+
+    .focused {
+        @include mixins.borderRadius(0, 0, 0, 0);
+    }
+
+    .changeBg > * {
+        background-color: colors.$white-100 !important;
+    }
+
+    .changeBg:hover > * {
+        background-color: colors.$white-100;
+        outline: 1px solid colors.$white-100;
+    }
+
+    .changeBg .searchButton:hover {
+        background-color: colors.$white !important;
+    }
+
+    .close {
+        @include mixins.borderRadius(0, 0, 2px, 2px);
+    }
+
+    .flex:hover > * {
+        cursor: pointer;
+        background-color: colors.$white;
+        outline: 1px solid colors.$white-100;
+    }
+}

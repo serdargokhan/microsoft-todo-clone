@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 // CSS
-import classes from "styles/Signup.module.css";
+import classes from "styles/Signup.module.scss";
 // Context
 import { useCtx } from "components/context/AuthContext";
 // Components

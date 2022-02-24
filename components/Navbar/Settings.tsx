@@ -2,7 +2,7 @@ import Button from "components/utils/Button";
 import Image from "next/image";
 import React from "react";
 // CSS
-import classes from "styles/Settings.module.css";
+import classes from "styles/Settings.module.scss";
 // Components
 import BgLayout from "./BgLayout";
 import SettingsComp from "./SettingsComp";

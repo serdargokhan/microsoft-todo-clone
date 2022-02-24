@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "styles/Settings.module.css";
+import classes from "styles/Settings.module.scss";
 
 interface Props {
     id: string;

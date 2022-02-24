@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 // CSS
-import classes from "styles/Profile.module.css";
+import classes from "styles/Profile.module.scss";
 // Components
 import Button from "components/utils/Button";
 // Images

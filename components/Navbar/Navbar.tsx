@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 // CSS
-import classes from "styles/Navbar.module.css";
+import classes from "styles/Navbar.module.scss";
 // Custom Hooks
 import useWindowDimension from "components/hooks/useWindowDimension";
 // Components
 import Input from "components/utils/Input";
 import AppLauncher from "./AppLauncher/AppLauncher";
-import Help from "./AppLauncher/Help";
+import Help from "./Help";
 import WhatIsNewSection from "./WhatIsNewSection";
 import Portal from "components/portals/Portal";
 // Images

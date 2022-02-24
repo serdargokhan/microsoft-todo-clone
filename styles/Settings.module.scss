@@ -1,0 +1,114 @@
+@use "./colors";
+@use "./mixins";
+
+.container {
+    margin-top: 1.25rem;
+    cursor: default;
+}
+
+.flex {
+    @include mixins.flexContainer(space-between);
+
+    h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+}
+
+.section {
+    margin-top: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: colors.$black-200;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.mdl2-cancel {
+    @include mixins.icons(colors.$black-100);
+    cursor: pointer;
+
+    &::before {
+        content: "\e711";
+    }
+}
+
+.footer {
+    @include mixins.flexContainer(flex-start);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+    color: colors.$blue-400;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.block {
+    display: block;
+    width: fit-content;
+    color: colors.$black-300;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.align {
+    margin-bottom: 1.175rem;
+}
+
+.check {
+    opacity: 0;
+    position: absolute;
+    left: -101vw;
+
+    + label {
+        @include mixins.flexContainer(flex-start);
+        font-size: 0.9rem;
+        position: relative;
+
+        &::before {
+            content: "";
+            width: 2.5rem;
+            height: 1.25rem;
+            border-radius: 0.75rem;
+            background-color: colors.$white;
+            border: 1px solid colors.$gray-200;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        &::after {
+            position: absolute;
+            content: "";
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: colors.$gray-100;
+            margin-left: 0.2rem;
+            cursor: pointer;
+        }
+    }
+}
+
+.align:hover > label::before {
+    border-color: colors.$black-150;
+}
+
+.align:hover > label::after {
+    background-color: colors.$black-150;
+}
+
+.check:checked + label::after {
+    left: 1.325rem;
+    background-color: colors.$white;
+}
+
+.check:checked + label::before {
+    background-color: colors.$blue-400;
+    border-color: colors.$blue-400;
+}

@@ -1,0 +1,18 @@
+@mixin flexContainer($jc: center, $ai: center) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+@mixin borderRadius($tl, $bl, $tr, $br) {
+    border-top-left-radius: $tl;
+    border-bottom-left-radius: $bl;
+    border-top-right-radius: $tr;
+    border-bottom-right-radius: $br;
+}
+
+@mixin icons($cl, $fs: 16px) {
+    font-family: "Segoe MDL2 Assets";
+    font-size: $fs;
+    color: $cl;
+}
