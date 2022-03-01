@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "styles/Settings.module.scss";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 function SettingsComp({ id, header }: Props) {
-    const [changes, setChanges] = useState({
+    /*     const [changes, setChanges] = useState({
         confirm: true,
         add: true,
         show: true,
@@ -26,7 +26,62 @@ function SettingsComp({ id, header }: Props) {
         hide: false,
         planner: true,
         flagged: false,
-    });
+    }); */
+    const [changes, setChanges] = useState([
+        {
+            _id: "confirm",
+            confirm: true,
+        },
+        {
+            _id: "add",
+            add: true,
+        },
+        {
+            _id: "show",
+            show: true,
+        },
+        {
+            _id: "showImportant",
+            showImportant: true,
+        },
+        {
+            _id: "click",
+            click: true,
+        },
+        {
+            _id: "move",
+            move: true,
+        },
+        {
+            _id: "play",
+            play: true,
+        },
+        {
+            _id: "notification",
+            notification: true,
+        },
+        {
+            _id: "potential",
+            potential: true,
+        },
+        {
+            _id: "suggestions",
+            suggestions: true,
+        },
+    ]);
+
+    useEffect(() => {
+        async function sendSettings() {
+            await fetch("/api/settings", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(changes),
+            });
+        }
+        sendSettings();
+    }, []);
 
     function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
         setChanges({
