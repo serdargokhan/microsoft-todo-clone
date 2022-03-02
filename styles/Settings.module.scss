@@ -6,6 +6,10 @@
     cursor: default;
 }
 
+.minh {
+    min-height: 100vh;
+}
+
 .flex {
     @include mixins.flexContainer(space-between);
 

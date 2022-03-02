@@ -2,112 +2,64 @@ import React, { useEffect, useState } from "react";
 import classes from "styles/Settings.module.scss";
 
 interface Props {
-    id: string;
-    header: string;
+    item: {
+        _id: string;
+        check: boolean;
+        header: string;
+    };
+    onClick: (e: boolean) => void;
 }
 
-function SettingsComp({ id, header }: Props) {
-    /*     const [changes, setChanges] = useState({
-        confirm: true,
-        add: true,
-        show: true,
-        showImportant: true,
-        click: true,
-        move: true,
-        play: true,
-        notification: true,
-        potential: true,
-        suggestions: true,
-        planned: true,
-        all: true,
-        completed: true,
-        important: true,
-        assigned: true,
-        hide: false,
-        planner: true,
-        flagged: false,
-    }); */
-    const [changes, setChanges] = useState([
-        {
-            _id: "confirm",
-            confirm: true,
-        },
-        {
-            _id: "add",
-            add: true,
-        },
-        {
-            _id: "show",
-            show: true,
-        },
-        {
-            _id: "showImportant",
-            showImportant: true,
-        },
-        {
-            _id: "click",
-            click: true,
-        },
-        {
-            _id: "move",
-            move: true,
-        },
-        {
-            _id: "play",
-            play: true,
-        },
-        {
-            _id: "notification",
-            notification: true,
-        },
-        {
-            _id: "potential",
-            potential: true,
-        },
-        {
-            _id: "suggestions",
-            suggestions: true,
-        },
-    ]);
+function SettingsComp({ item, onClick }: Props) {
+    const [changes, setChanges] = useState<any>([]);
+    const [click, setClick] = useState(false);
+
+    useEffect(() => {
+        onClick(click);
+    }, [click]);
 
     useEffect(() => {
         async function sendSettings() {
-            await fetch("/api/settings", {
-                method: "POST",
+            await fetch(`/api/settings/`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(changes),
+                body: JSON.stringify({
+                    change: changes[item._id],
+                    id: item._id,
+                }),
             });
         }
-        sendSettings();
-    }, []);
+        if (changes[item._id] !== undefined) sendSettings();
+    }, [click]);
 
     function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
         setChanges({
             ...changes,
             [e.target.id]: e.target.checked,
         });
+        setClick((prev) => !prev);
     }
 
     return (
         <div className={classes.align}>
-            <label className={classes.block} htmlFor={id}>
-                {header}
+            <label className={classes.block} htmlFor={item._id}>
+                {item.header}
             </label>
             <input
                 onChange={changeHandler}
                 type="checkbox"
                 // @ts-ignore
-                checked={changes[id]}
-                id={id}
+                checked={item[item._id] ? true : false}
+                id={item._id}
                 className={classes.check}
             />
 
-            <label htmlFor={id}>
+            <label htmlFor={item._id}>
                 {
                     // @ts-ignore
-                    changes[id] ? "On" : "Off"
+                    item[item._id] ? "On" : "Off"
                 }
             </label>
         </div>

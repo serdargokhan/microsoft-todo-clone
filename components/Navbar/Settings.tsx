@@ -1,6 +1,6 @@
 import Button from "components/utils/Button";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 // CSS
 import classes from "styles/Settings.module.scss";
 // Components
@@ -16,8 +16,25 @@ interface Props {
 }
 
 function Settings({ onCloseSettings }: Props) {
+    const [changes, setChanges] = useState<
+        { _id: string; check: boolean; header: string }[]
+    >([]);
+    const [click, setClick] = useState(false);
     function closeHandler() {
         onCloseSettings(false);
+    }
+
+    useEffect(() => {
+        async function getSettings() {
+            const res = await fetch("/api/settings");
+            const data = await res.json();
+            if (data) setChanges(data);
+        }
+        getSettings();
+    }, [click]);
+
+    function detectClick(e: boolean) {
+        setClick(e);
     }
 
     return (
@@ -30,39 +47,20 @@ function Settings({ onCloseSettings }: Props) {
                         className={classes["mdl2-cancel"]}
                     ></span>
                 </div>
-                <p className={classes.section}>General</p>
-                <SettingsComp id="confirm" header="Confirm before deleting" />
-                <SettingsComp id="add" header="Add new tasks on top" />
-                <SettingsComp id="move" header="Move starred tasks to top" />
-                <SettingsComp id="play" header="Play completion sound" />
-                <SettingsComp id="click" header="Show right-click menus" />
-                <SettingsComp
-                    id="notification"
-                    header="Turn on reminder notifications"
-                />
-                <SettingsComp
-                    id="showImportant"
-                    header="Show tasks that seem important in My Day"
-                />
-                <p className={classes.section}>My Day</p>
-                <SettingsComp
-                    id="potential"
-                    header="Show potential tasks in My Day"
-                />
-                <SettingsComp
-                    id="suggestions"
-                    header="Show due tasks suggestions"
-                />
-                <p className={classes.section}>Smart Lists</p>
-                <SettingsComp id="important" header="Important" />
-                <SettingsComp id="planned" header="Planned" />
-                <SettingsComp id="all" header="All" />
-                <SettingsComp id="completed" header="Completed" />
-                <SettingsComp id="assigned" header="Assigned to me" />
-                <SettingsComp id="hide" header="Auto-hide empty  smart lists" />
-                <p className={classes.section}>Connected Apps</p>
-                <SettingsComp id="planner" header="Planner" />
-                <SettingsComp id="flagged" header="Flagged email" />
+                <div className={classes.minh}>
+                    <p className={classes.section}>General</p>
+
+                    {changes.map((item) => {
+                        return (
+                            <SettingsComp
+                                item={item}
+                                key={item._id}
+                                onClick={detectClick}
+                            />
+                        );
+                    })}
+                </div>
+
                 <p className={classes.section}>Connect</p>
                 <div className={classes.footer}>
                     <Image src={TwitterIcon} width={24} height={24} />
@@ -87,4 +85,4 @@ function Settings({ onCloseSettings }: Props) {
     );
 }
 
-export default Settings;
+export default React.memo(Settings);
