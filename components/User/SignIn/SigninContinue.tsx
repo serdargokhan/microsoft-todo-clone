@@ -12,7 +12,11 @@ import Input from "components/utils/Input";
 import Signin from "./Signin";
 import PasswordWrapper from "components/User/Layout/PasswordWrapper";
 // Firebase
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+} from "firebase/auth";
 import { app } from "components/firebase/Firebase";
 
 function SigninContinue() {
@@ -75,6 +79,17 @@ function SigninContinue() {
                     const user = userCredentials.user;
                     console.log(user);
                     if (user) {
+                        fetch("/api/todos/", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                _id: user?.uid,
+                                email: user?.email,
+                            }),
+                        });
+                        localStorage.setItem("userUid", user.uid);
                         setLoading(false);
                         router.push("/");
                         reset();
