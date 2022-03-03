@@ -8,18 +8,29 @@ export default async function handler(
     const { db } = await connectToDatabase();
 
     if (req.method === "GET") {
-        const data = await db.collection("Settings").find({}).toArray();
-        res.status(200).json(data);
+        try {
+            const data = await db.collection("Settings").find({}).toArray();
+            res.status(200).json(data);
+        } catch (err) {
+            res.status(500).json({ message: "Unable to fetch the data." });
+        }
     }
 
     if (req.method === "PUT") {
-        const item = req.body;
-        const id = item.id;
-        const change = item.change;
+        try {
+            const item = req.body;
+            const id = item.id;
+            const change = item.change;
 
-        const update: any = { $set: {} };
-        update.$set[id] = change;
+            const update: any = { $set: {} };
+            update.$set[id] = change;
 
-        await db.collection("Settings").updateOne({ _id: id }, update);
+            const data = await db
+                .collection("Settings")
+                .updateOne({ _id: id }, update);
+            res.status(201).json(data);
+        } catch (err) {
+            res.status(500).json({ message: "Unable to instert the data." });
+        }
     }
 }

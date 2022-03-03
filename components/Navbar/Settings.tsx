@@ -1,6 +1,8 @@
 import Button from "components/utils/Button";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+// Context
+import { useCtx } from "components/context/SettingsContext";
 // CSS
 import classes from "styles/Settings.module.scss";
 // Components
@@ -19,23 +21,25 @@ function Settings({ onCloseSettings }: Props) {
     const [changes, setChanges] = useState<
         { _id: string; check: boolean; header: string }[]
     >([]);
-    const [click, setClick] = useState(false);
+
+    const { fetchChange } = useCtx();
+
     function closeHandler() {
         onCloseSettings(false);
     }
 
     useEffect(() => {
         async function getSettings() {
-            const res = await fetch("/api/settings");
-            const data = await res.json();
-            if (data) setChanges(data);
+            try {
+                const res = await fetch("/api/settings");
+                const data = await res.json();
+                if (data) setChanges(data);
+            } catch (err) {
+                console.error(err);
+            }
         }
         getSettings();
-    }, [click]);
-
-    function detectClick(e: boolean) {
-        setClick(e);
-    }
+    }, [fetchChange]);
 
     return (
         <BgLayout>
@@ -49,15 +53,27 @@ function Settings({ onCloseSettings }: Props) {
                 </div>
                 <div className={classes.minh}>
                     <p className={classes.section}>General</p>
-
-                    {changes.map((item) => {
-                        return (
-                            <SettingsComp
-                                item={item}
-                                key={item._id}
-                                onClick={detectClick}
-                            />
-                        );
+                    {changes.map((item, index) => {
+                        if (index <= 6)
+                            return <SettingsComp item={item} key={item._id} />;
+                    })}
+                    <p className={classes.section}>My Day</p>
+                    {changes.map((item, index) => {
+                        if (index > 6 && index <= 8) {
+                            return <SettingsComp item={item} key={item._id} />;
+                        }
+                    })}
+                    <p className={classes.section}>Smart Lists</p>
+                    {changes.map((item, index) => {
+                        if (index > 8 && index <= 14) {
+                            return <SettingsComp item={item} key={item._id} />;
+                        }
+                    })}
+                    <p className={classes.section}>Connected Apps</p>
+                    {changes.map((item, index) => {
+                        if (index > 14 && index <= 16) {
+                            return <SettingsComp item={item} key={item._id} />;
+                        }
                     })}
                 </div>
 

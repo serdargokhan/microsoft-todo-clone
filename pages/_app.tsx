@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import AuthContextProvider from "../components/context/AuthContext";
 import Head from "next/head";
 import FavIcon from "../public/favicon.ico";
+import SettingsContextProvider from "components/context/SettingsContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Head>
 
             <AuthContextProvider>
-                <Component {...pageProps} />
+                <SettingsContextProvider>
+                    <Component {...pageProps} />
+                </SettingsContextProvider>
             </AuthContextProvider>
         </>
     );

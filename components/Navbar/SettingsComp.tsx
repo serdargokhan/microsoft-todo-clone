@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+// Context
+import { useCtx } from "components/context/SettingsContext";
+// CSS
 import classes from "styles/Settings.module.scss";
 
 interface Props {
@@ -7,29 +10,32 @@ interface Props {
         check: boolean;
         header: string;
     };
-    onClick: (e: boolean) => void;
 }
 
-function SettingsComp({ item, onClick }: Props) {
+function SettingsComp({ item }: Props) {
     const [changes, setChanges] = useState<any>([]);
     const [click, setClick] = useState(false);
-
-    useEffect(() => {
-        onClick(click);
-    }, [click]);
+    const { setFetchChange } = useCtx();
 
     useEffect(() => {
         async function sendSettings() {
-            await fetch(`/api/settings/`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    change: changes[item._id],
-                    id: item._id,
-                }),
-            });
+            try {
+                const req = await fetch(`/api/settings/`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        change: changes[item._id],
+                        id: item._id,
+                    }),
+                });
+                setFetchChange(true);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setFetchChange(false);
+            }
         }
         if (changes[item._id] !== undefined) sendSettings();
     }, [click]);
