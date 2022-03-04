@@ -2,7 +2,7 @@
 @use "./mixins";
 
 .container {
-    margin-top: 1.25rem;
+    margin-top: 0.75rem;
     cursor: default;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .section {
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
     margin-bottom: 1.5rem;
     color: colors.$black-200;
     font-size: 1.125rem;
@@ -29,10 +29,20 @@
 
 .mdl2-cancel {
     @include mixins.icons(colors.$black-100);
-    cursor: pointer;
+    padding: 0.75rem;
 
     &::before {
         content: "\e711";
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: colors.$gray-350;
+    }
+
+    &:active {
+        box-shadow: 0px 0px 0px 2px colors.$black;
+        border-radius: 2px;
     }
 }
 
@@ -115,4 +125,8 @@
 .check:checked + label::before {
     background-color: colors.$blue-400;
     border-color: colors.$blue-400;
+}
+
+.align:hover .check:checked + label::after {
+    background-color: colors.$gray-50;
 }

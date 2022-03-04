@@ -3,7 +3,7 @@
 
 .head {
     @include mixins.flexContainer(space-between);
-    padding-block: 1.25rem;
+    padding-block: 0.75rem;
 }
 
 .container {
@@ -79,7 +79,20 @@
 .mdl2-cancel,
 .mdl2-brightness {
     @include mixins.icons(colors.$black-100);
-    cursor: pointer;
+}
+
+.mdl2-cancel {
+    padding: 0.75rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: colors.$gray-350;
+    }
+
+    &:active {
+        box-shadow: 0px 0px 0px 2px colors.$black;
+        border-radius: 2px;
+    }
 }
 
 .mdl2-cancel::before {

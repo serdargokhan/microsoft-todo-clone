@@ -16,6 +16,7 @@ import SearchIcon from "public/Navbar/SearchIcon.svg";
 import CloseIcon from "public/Navbar/CloseIcon.svg";
 import Settings from "./Settings";
 import Profile from "./Profile";
+import { useCtx } from "components/context/SettingsContext";
 
 function Navbar() {
     const [focus, setFocus] = useState(false);
@@ -25,10 +26,13 @@ function Navbar() {
     const [openHelp, setOpenHelp] = useState(false);
     const [openSettings, setOpenSettings] = useState(false);
     const [openProfile, setOpenProfile] = useState(false);
+    const [selectedEmail, setSelectedEmail] = useState("");
     const [hideIcon, setHideIcon] = useState({
         speakerIcon: false,
         questionIcon: false,
     });
+
+    const { email } = useCtx();
 
     const width = useWindowDimension();
 
@@ -41,6 +45,14 @@ function Navbar() {
     useEffect(() => {
         if (focus) inputRef.current?.focus();
     }, [focus]);
+
+    useEffect(() => {
+        if (email !== undefined)
+            email.map((item) => {
+                if (item._id === localStorage.getItem("userUid"))
+                    setSelectedEmail(item.email);
+            });
+    }, [email]);
 
     function leaveInput() {
         setFocus(false);
@@ -187,7 +199,7 @@ function Navbar() {
                         />
                         {focus && (
                             <div className={classes.close}>
-                                <Image src={CloseIcon} width={25} height={25} />
+                                <Image src={CloseIcon} />
                             </div>
                         )}
                     </div>
@@ -226,7 +238,7 @@ function Navbar() {
                     className={classes.circleCenter}
                 >
                     <div className={classes.circle}>
-                        <p>S</p>
+                        <p>{selectedEmail.slice(0, 1).toUpperCase()}</p>
                     </div>
                 </button>
             </nav>
