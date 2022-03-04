@@ -1,6 +1,6 @@
 import Button from "components/utils/Button";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // Context
 import { useCtx } from "components/context/SettingsContext";
 // CSS
@@ -18,11 +18,7 @@ interface Props {
 }
 
 function Settings({ onCloseSettings }: Props) {
-    const [changes, setChanges] = useState<
-        { _id: string; check: boolean; header: string }[]
-    >([]);
-
-    const { fetchChange } = useCtx();
+    const { fetchChange, email, setEmail } = useCtx();
 
     function closeHandler() {
         onCloseSettings(false);
@@ -31,9 +27,9 @@ function Settings({ onCloseSettings }: Props) {
     useEffect(() => {
         async function getSettings() {
             try {
-                const res = await fetch("/api/settings");
+                const res = await fetch("/api/todos");
                 const data = await res.json();
-                if (data) setChanges(data);
+                if (data) setEmail(data);
             } catch (err) {
                 console.error(err);
             }
@@ -53,26 +49,12 @@ function Settings({ onCloseSettings }: Props) {
                 </div>
                 <div className={classes.minh}>
                     <p className={classes.section}>General</p>
-                    {changes.map((item, index) => {
-                        if (index <= 6)
-                            return <SettingsComp item={item} key={item._id} />;
-                    })}
-                    <p className={classes.section}>My Day</p>
-                    {changes.map((item, index) => {
-                        if (index > 6 && index <= 8) {
-                            return <SettingsComp item={item} key={item._id} />;
-                        }
-                    })}
-                    <p className={classes.section}>Smart Lists</p>
-                    {changes.map((item, index) => {
-                        if (index > 8 && index <= 14) {
-                            return <SettingsComp item={item} key={item._id} />;
-                        }
-                    })}
-                    <p className={classes.section}>Connected Apps</p>
-                    {changes.map((item, index) => {
-                        if (index > 14 && index <= 16) {
-                            return <SettingsComp item={item} key={item._id} />;
+
+                    {email.map((item) => {
+                        if (item._id === localStorage.getItem("userUid")) {
+                            return item.settings.map((el) => {
+                                return <SettingsComp item={el} key={el._id} />;
+                            });
                         }
                     })}
                 </div>

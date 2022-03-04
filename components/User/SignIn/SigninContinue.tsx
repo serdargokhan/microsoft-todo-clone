@@ -11,12 +11,9 @@ import Button from "components/utils/Button";
 import Input from "components/utils/Input";
 import Signin from "./Signin";
 import PasswordWrapper from "components/User/Layout/PasswordWrapper";
+import { settingsArray } from "components/assets/SettingsData";
 // Firebase
-import {
-    getAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "components/firebase/Firebase";
 
 function SigninContinue() {
@@ -87,6 +84,7 @@ function SigninContinue() {
                             body: JSON.stringify({
                                 _id: user?.uid,
                                 email: user?.email,
+                                settings: settingsArray,
                             }),
                         });
                         localStorage.setItem("userUid", user.uid);

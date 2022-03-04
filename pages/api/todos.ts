@@ -26,4 +26,23 @@ export default async function handler(
             res.status(500).json({ message: "Unable to insert the data." });
         }
     }
+
+    if (req.method === "PUT") {
+        try {
+            const { _id, id, change } = req.body;
+
+            let set = `settings.$[el].${id}`;
+
+            const data = await db
+                .collection("Todos")
+                .updateOne(
+                    { _id: _id },
+                    { $set: { [set]: change } },
+                    { arrayFilters: [{ "el._id": id }] }
+                );
+            res.status(201).json(data);
+        } catch (err) {
+            res.status(500).json({ message: "Unable to instert the data." });
+        }
+    }
 }

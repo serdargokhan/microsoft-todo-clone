@@ -50,6 +50,7 @@ interface PageProps {
     data: {
         _id: string;
         email: string;
+        settings: { _id: string; check: boolean; header: string }[];
     }[];
 }
 

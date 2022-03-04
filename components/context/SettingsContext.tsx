@@ -6,8 +6,11 @@ interface Types {
     email: {
         _id: string;
         email: string;
+        settings: { _id: string; check: boolean; header: string }[];
     }[];
     setEmail: React.Dispatch<React.SetStateAction<string>>;
+    changes: any;
+    setChanges: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const SettingsContext = createContext<Types>({
@@ -17,9 +20,12 @@ export const SettingsContext = createContext<Types>({
         {
             _id: "",
             email: "",
+            settings: [{ _id: "", check: false, header: "" }],
         },
     ],
     setEmail: () => {},
+    changes: "",
+    setChanges: () => {},
 });
 
 function SettingsContextProvider({
@@ -27,12 +33,15 @@ function SettingsContextProvider({
 }: React.PropsWithChildren<ReactNode>) {
     const [fetchChange, setFetchChange] = useState(false);
     const [email, setEmail] = useState<any>();
+    const [changes, setChanges] = useState<any>([]);
 
     const values = {
         fetchChange,
         setFetchChange,
         email,
         setEmail,
+        changes,
+        setChanges,
     };
 
     return (

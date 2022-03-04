@@ -20,12 +20,13 @@ function SettingsComp({ item }: Props) {
     useEffect(() => {
         async function sendSettings() {
             try {
-                const req = await fetch(`/api/settings/`, {
+                await fetch(`/api/todos/`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
+                        _id: localStorage.getItem("userUid"),
                         change: changes[item._id],
                         id: item._id,
                     }),
