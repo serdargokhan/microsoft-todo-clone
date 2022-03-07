@@ -1,0 +1,180 @@
+@use "./colors";
+@use "./mixins";
+
+.container {
+    margin-top: 1.4rem;
+
+    & > * {
+        color: colors.$black-200;
+    }
+}
+
+.flex {
+    margin-top: 1.375rem;
+
+    & > div {
+        @include mixins.flexContainer(flex-start);
+        padding: 0.375rem 0;
+        padding-left: 0.8rem;
+
+        &:hover {
+            background-color: colors.$white-500;
+            cursor: pointer;
+        }
+    }
+
+    div > p {
+        margin-left: 0.6rem;
+        font-size: 0.875rem;
+    }
+}
+
+.footer {
+    @include mixins.flexContainer(flex-start);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    & > span {
+        &:hover {
+            background-color: colors.$white-500;
+            cursor: pointer;
+        }
+    }
+}
+
+.mdl2-navbar {
+    @include mixins.icons(colors.$black-100);
+    padding: 0.5rem;
+    margin-left: 1rem;
+
+    &::before {
+        content: "\e700";
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: colors.$white-500;
+    }
+}
+
+.mdl2-calendar {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e787";
+    }
+}
+
+.mdl2-favorite {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e734";
+    }
+}
+
+.mdl2-brightness {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e706";
+    }
+}
+
+.mdl2-contact {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e77B";
+    }
+}
+
+.mdl2-home {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e80F";
+    }
+}
+
+.mdl2-mail {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 58px;
+    height: 48px;
+
+    &::before {
+        content: "\e715";
+    }
+}
+
+.mdl2-people {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 58px;
+    height: 48px;
+
+    &::before {
+        content: "\e716";
+    }
+}
+
+.mdl2-attach {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 58px;
+    height: 48px;
+
+    &::before {
+        content: "\e723";
+    }
+}
+
+.mdl2-todo {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 58px;
+    height: 48px;
+
+    &::before {
+        content: "\e840";
+    }
+}
+
+.mdl2-calendar-bottom {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 58px;
+    height: 48px;
+
+    &::before {
+        content: "\e787";
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .mdl2-calendar-bottom,
+    .mdl2-todo,
+    .mdl2-attach,
+    .mdl2-people,
+    .mdl2-mail {
+        width: 40px;
+        height: 48px;
+    }
+}

@@ -1,0 +1,16 @@
+@use "./colors";
+@use "./mixins";
+
+.container {
+    background-color: colors.$gray-550;
+    width: 290px;
+    display: block;
+    float: left;
+    min-height: calc(100vh - 48px);
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 200px;
+    }
+}
