@@ -1,11 +1,10 @@
 import Head from "next/head";
 import React from "react";
 import TodoIcon from "public/TodoIcon.svg";
+import { useRouter } from "next/router";
 
-interface Props {}
-
-function Myday(props: Props) {
-    const {} = props;
+function Myday() {
+    const router = useRouter();
 
     return (
         <>
