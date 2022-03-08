@@ -1,35 +1,9 @@
-import { useEffect } from "react";
 import type { GetStaticPropsResult, NextPage } from "next";
-import { useRouter } from "next/router";
 import Head from "next/head";
-// Context
-import { useCtx } from "components/context/SettingsContext";
-// Components
-import Navbar from "components/Navbar/Navbar";
-import Menu from "components/Main/TodosMenu/Menu";
 // Images
 import TodoIcon from "public/TodoIcon.svg";
 
 const Home: NextPage = ({ data }: any) => {
-    const { setEmail } = useCtx();
-
-    const router = useRouter();
-
-    useEffect(() => {
-        setEmail(data);
-    }, [data]);
-
-    // localStorage is not defined on the server side
-    useEffect(() => {
-        const accessToken = localStorage.getItem("userUid");
-        if (!accessToken) router.push("/signin");
-        const timeOut = setTimeout(() => {
-            localStorage.removeItem("userUid");
-        }, 1000 * 60 * 60);
-
-        return () => clearTimeout(timeOut);
-    }, []);
-
     return (
         <>
             <Head>
@@ -40,8 +14,6 @@ const Home: NextPage = ({ data }: any) => {
                 />
                 <title>My Day - To Do</title>
             </Head>
-            <Navbar />
-            <Menu />
         </>
     );
 };

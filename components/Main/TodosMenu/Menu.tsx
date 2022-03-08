@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 // CSS
 import classes from "styles/Menu.module.scss";
 // Components
@@ -13,34 +14,48 @@ function Menu() {
             <div className={classes.container}>
                 <span className={classes["mdl2-navbar"]}></span>
                 <div className={classes.flex}>
-                    <div>
-                        <span className={classes["mdl2-brightness"]}></span>
-                        <p>My Day</p>
-                    </div>
-                    <div>
-                        <span className={classes["mdl2-favorite"]}></span>
-                        <p>Important</p>
-                    </div>
-                    <div>
-                        <span className={classes["mdl2-calendar"]}></span>
-                        <p>Planned</p>
-                    </div>
-                    <div>
-                        <Image src={InfiniteIcon}></Image>
-                        <p>All</p>
-                    </div>
-                    <div>
-                        <Image src={CompleteIcon}></Image>
-                        <p>Completed</p>
-                    </div>
-                    <div>
-                        <span className={classes["mdl2-contact"]}></span>
-                        <p>Assigned to me</p>
-                    </div>
-                    <div>
-                        <span className={classes["mdl2-home"]}></span>
-                        <p>Tasks</p>
-                    </div>
+                    <Link href="/tasks/myday">
+                        <div>
+                            <span className={classes["mdl2-brightness"]}></span>
+                            <p>My Day</p>
+                        </div>
+                    </Link>
+                    <Link href="/tasks/important">
+                        <div>
+                            <span className={classes["mdl2-favorite"]}></span>
+                            <p>Important</p>
+                        </div>
+                    </Link>
+                    <Link href="/tasks/planned">
+                        <div>
+                            <span className={classes["mdl2-calendar"]}></span>
+                            <p>Planned</p>
+                        </div>
+                    </Link>
+                    <Link href="/tasks/all">
+                        <div>
+                            <Image src={InfiniteIcon}></Image>
+                            <p>All</p>
+                        </div>
+                    </Link>
+                    <Link href="/tasks/completed">
+                        <div>
+                            <Image src={CompleteIcon}></Image>
+                            <p>Completed</p>
+                        </div>
+                    </Link>
+                    <Link href="/tasks/assigned-to-me">
+                        <div>
+                            <span className={classes["mdl2-contact"]}></span>
+                            <p>Assigned to me</p>
+                        </div>
+                    </Link>
+                    <Link href="/tasks/inbox">
+                        <div>
+                            <span className={classes["mdl2-home"]}></span>
+                            <p>Tasks</p>
+                        </div>
+                    </Link>
                 </div>
             </div>
 

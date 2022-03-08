@@ -1,11 +1,15 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 function IndexPage() {
     const router = useRouter();
 
     useEffect(() => {
-        router.push("/tasks");
+        const accessToken = localStorage.getItem("userUid");
+        if (accessToken) router.push("/tasks/myday");
+        setTimeout(() => {
+            localStorage.removeItem("userUid");
+        }, 1000 * 60 * 60);
     }, []);
 
     return <></>;

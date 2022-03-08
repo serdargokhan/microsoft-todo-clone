@@ -32,7 +32,7 @@ function SettingsContextProvider({
     children,
 }: React.PropsWithChildren<ReactNode>) {
     const [fetchChange, setFetchChange] = useState(false);
-    const [email, setEmail] = useState<any>();
+    const [email, setEmail] = useState<any>([]);
     const [changes, setChanges] = useState<any>([]);
 
     const values = {
