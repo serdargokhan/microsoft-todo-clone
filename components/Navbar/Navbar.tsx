@@ -257,14 +257,10 @@ function Navbar() {
                     <Help onCloseHelp={setOpenHelp} />
                 </Portal>
             )}
-            {openSettings && (
-                <Portal>
-                    <Settings onCloseSettings={setOpenSettings} />
-                </Portal>
-            )}
+            {openSettings && <Settings onCloseSettings={setOpenSettings} />}
             {openProfile && (
                 <Portal>
-                    <Profile />
+                    <Profile onOpenProfile={setOpenProfile} />
                 </Portal>
             )}
         </>

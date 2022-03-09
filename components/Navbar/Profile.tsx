@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // Context
@@ -10,17 +10,34 @@ import Button from "components/utils/Button";
 // Images
 import MicrosoftLogo from "public/microsoftLogo.svg";
 
-function Profile() {
+interface Props {
+    onOpenProfile: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Profile({ onOpenProfile }: Props) {
     const [selectedEmail, setSelectedEmail] = useState("");
 
     const router = useRouter();
 
-    const { email } = useCtx();
+    const { email, setEmail, fetchChange } = useCtx();
 
     function signoutHandler() {
         localStorage.removeItem("userUid");
         router.push("/signin");
     }
+
+    useEffect(() => {
+        async function getSettings() {
+            try {
+                const res = await fetch("/api/todos");
+                const data = await res.json();
+                if (data) setEmail(data);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        getSettings();
+    }, [fetchChange]);
 
     useEffect(() => {
         email.map((item) => {
@@ -29,8 +46,25 @@ function Profile() {
         });
     }, [email]);
 
+    const divRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const listener = (e: any) => {
+            if (!divRef.current || divRef.current!.contains(e.target)) {
+                return;
+            }
+            onOpenProfile(false);
+        };
+
+        document.addEventListener("click", listener);
+
+        return () => {
+            document.removeEventListener("click", listener);
+        };
+    }, [onOpenProfile, divRef]);
+
     return (
-        <div className={classes.container}>
+        <div className={classes.container} ref={divRef}>
             <div className={classes.top}>
                 <Image src={MicrosoftLogo} width={80} height={24} />
                 <Button

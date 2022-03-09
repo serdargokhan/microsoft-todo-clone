@@ -59,6 +59,21 @@
     }
 }
 
+.mdl2-navbar-closed {
+    @include mixins.icons(colors.$black-100);
+    padding: 0.4rem;
+    margin-left: 1rem;
+
+    &::before {
+        content: "\e700";
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: colors.$white-500;
+    }
+}
+
 .mdl2-calendar {
     @include mixins.icons(colors.$black-200);
     @include mixins.flexContainer();
