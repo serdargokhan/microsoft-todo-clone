@@ -2,11 +2,7 @@ import Head from "next/head";
 import React from "react";
 import TodoIcon from "public/TodoIcon.svg";
 
-interface Props {}
-
-function İmportant(props: Props) {
-    const {} = props;
-
+function İmportant() {
     return (
         <>
             <Head>
@@ -17,7 +13,7 @@ function İmportant(props: Props) {
                 />
                 <title>Important - To Do</title>
             </Head>
-            <div style={{ float: "left" }}>Important</div>
+            <span style={{ float: "left" }}>Important</span>
         </>
     );
 }

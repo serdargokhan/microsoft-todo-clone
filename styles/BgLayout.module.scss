@@ -10,6 +10,8 @@
     overflow-y: auto;
     max-height: calc(100vh - 75px);
     box-shadow: -5px 0px 10px -6px colors.$gray-600;
+    position: absolute;
+    right: 0;
 }
 
 @media screen and (max-width: 400px) {

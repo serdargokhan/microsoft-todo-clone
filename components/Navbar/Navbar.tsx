@@ -154,7 +154,7 @@ function Navbar() {
                 </button>
 
                 <div className={classes.middle}>
-                    <h1 className={classes.title}>Outlook</h1>
+                    <h1 className={classes.title}>To Do</h1>
                     <div className={`${multipleClass} ${singleClass}`}>
                         {!focus && (
                             <span className={classes.tooltipText}>Search</span>
@@ -257,7 +257,11 @@ function Navbar() {
                     <Help onCloseHelp={setOpenHelp} />
                 </Portal>
             )}
-            {openSettings && <Settings onCloseSettings={setOpenSettings} />}
+            {openSettings && (
+                <Portal>
+                    <Settings onCloseSettings={setOpenSettings} />
+                </Portal>
+            )}
             {openProfile && (
                 <Portal>
                     <Profile onOpenProfile={setOpenProfile} />

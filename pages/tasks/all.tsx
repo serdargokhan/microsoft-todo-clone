@@ -2,11 +2,7 @@ import Head from "next/head";
 import React from "react";
 import TodoIcon from "public/TodoIcon.svg";
 
-interface Props {}
-
-function All(props: Props) {
-    const {} = props;
-
+function All() {
     return (
         <>
             <Head>

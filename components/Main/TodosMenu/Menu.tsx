@@ -11,6 +11,7 @@ import Input from "components/utils/Input";
 import InfiniteIcon from "public/Menu/Infinite.svg";
 import CompleteIcon from "public/Menu/Complete.svg";
 import GroupIcon from "public/Menu/Group.svg";
+import ListIcon from "public/Menu/BulletedList.svg";
 
 function Menu() {
     const [inputText, setInputText] = useState("");
@@ -144,21 +145,26 @@ function Menu() {
             </div>
 
             {/* Dynamic list adding will come here */}
-            <p className={classes.lists}>{list}</p>
 
             <form onSubmit={addNewListHandler} className={classes.addList}>
                 <div className={classes.flexCenter}>
-                    <span className={classes["mdl2-add"]}></span>
-                    <Input
-                        type="text"
-                        className={classes.input}
-                        placeholder="New list"
-                        onChange={inputChangeHandler}
-                        value={inputText}
-                    />
+                    <Image src={ListIcon} width={20} height={20} />
+                    <p className={classes.lists}>{list}</p>
                 </div>
-                <div className={classes.group}>
-                    <Image src={GroupIcon} />
+                <div className={classes.outer}>
+                    <div className={classes.flexCenter}>
+                        <span className={classes["mdl2-add"]}></span>
+                        <Input
+                            type="text"
+                            className={classes.input}
+                            placeholder="New list"
+                            onChange={inputChangeHandler}
+                            value={inputText}
+                        />
+                    </div>
+                    <div className={classes.group}>
+                        <Image src={GroupIcon} />
+                    </div>
                 </div>
             </form>
 

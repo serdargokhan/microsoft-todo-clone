@@ -36,8 +36,12 @@
     font-size: 1rem;
     font-weight: 600;
     margin-left: 0.6rem;
-    cursor: pointer;
     line-height: 6px;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
 
 .middle {

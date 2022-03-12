@@ -9,6 +9,9 @@
     padding-left: 1rem;
     @include mixins.flexContainer(space-between, space-between);
     flex-direction: column;
+    position: absolute;
+    right: 0;
+    background-color: colors.$white;
 }
 
 .signOut {
