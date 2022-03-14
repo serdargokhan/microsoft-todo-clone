@@ -1,8 +1,10 @@
 import Head from "next/head";
-import React from "react";
+// Components
+import MyDay from "components/Main/TodosMenu/Sections/MyDay";
+// Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function Myday() {
+function MydayPage() {
     return (
         <>
             <Head>
@@ -13,9 +15,9 @@ function Myday() {
                 />
                 <title>My Day - To Do</title>
             </Head>
-            <div style={{ float: "left" }}>My Day</div>
+            <MyDay />
         </>
     );
 }
 
-export default Myday;
+export default MydayPage;

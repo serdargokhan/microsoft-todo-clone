@@ -1,8 +1,10 @@
 import Head from "next/head";
-import React from "react";
+// Components
+import Important from "components/Main/TodosMenu/Sections/Important";
+// Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function İmportant() {
+function ImportantPage() {
     return (
         <>
             <Head>
@@ -13,9 +15,9 @@ function İmportant() {
                 />
                 <title>Important - To Do</title>
             </Head>
-            <span style={{ float: "left" }}>Important</span>
+            <Important />
         </>
     );
 }
 
-export default İmportant;
+export default ImportantPage;

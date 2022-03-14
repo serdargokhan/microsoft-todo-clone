@@ -1,8 +1,10 @@
 import Head from "next/head";
-import React from "react";
+// Components
+import Planned from "components/Main/TodosMenu/Sections/Planned";
+// Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function Planned() {
+function PlannedPage() {
     return (
         <>
             <Head>
@@ -13,9 +15,9 @@ function Planned() {
                 />
                 <title>Planned - To Do</title>
             </Head>
-            <div style={{ float: "left" }}>Planned</div>
+            <Planned />
         </>
     );
 }
 
-export default Planned;
+export default PlannedPage;

@@ -13,7 +13,16 @@ interface IProps {
 }
 
 function Input(
-    { className, type, onChange, onBlur, onClick, value, placeholder }: IProps,
+    {
+        className,
+        type,
+        onChange,
+        onBlur,
+        onClick,
+        value,
+        placeholder,
+        id,
+    }: IProps,
     ref: React.LegacyRef<HTMLInputElement> | undefined
 ) {
     return (
@@ -26,6 +35,8 @@ function Input(
             value={value}
             placeholder={placeholder}
             ref={ref}
+            id={id}
+            autoComplete="off"
         />
     );
 }

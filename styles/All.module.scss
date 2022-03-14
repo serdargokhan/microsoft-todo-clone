@@ -1,0 +1,8 @@
+@use "./colors";
+@use "./mixins";
+
+.title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: colors.$red-200;
+}

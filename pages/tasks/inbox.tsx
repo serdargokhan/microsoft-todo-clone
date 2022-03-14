@@ -1,8 +1,10 @@
 import Head from "next/head";
-import React from "react";
+// Components
+import Tasks from "components/Main/TodosMenu/Sections/Tasks";
+// Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function İnbox() {
+function InboxPage() {
     return (
         <>
             <Head>
@@ -13,9 +15,9 @@ function İnbox() {
                 />
                 <title>Tasks - To Do</title>
             </Head>
-            <div style={{ float: "left" }}>tasks</div>
+            <Tasks />
         </>
     );
 }
 
-export default İnbox;
+export default InboxPage;

@@ -1,0 +1,51 @@
+@use "./colors";
+@use "./mixins";
+
+.container {
+    @include mixins.flexContainer(flex-start, flex-start);
+    flex-direction: column;
+    padding-top: 1.325rem;
+}
+
+.topFlex {
+    @include mixins.flexContainer();
+    padding-left: 1.6rem;
+
+    & > p {
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: colors.$green-200;
+    }
+}
+
+.bottomFlex {
+    @include mixins.flexContainer();
+    flex-direction: column;
+    margin-top: 7rem;
+
+    & > p {
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-top: 1rem;
+        text-align: center;
+        max-width: 70%;
+        color: colors.$gray-100;
+    }
+}
+
+.mdl2-dots {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 32px;
+    height: 32px;
+    margin-left: 0.625rem;
+
+    &::before {
+        content: "\e712";
+    }
+
+    &:hover {
+        background-color: colors.$gray-400;
+        cursor: pointer;
+    }
+}

@@ -31,10 +31,8 @@
 }
 
 .footer {
-    @include mixins.flexContainer(flex-start);
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    @include mixins.flexContainer();
+    margin-top: auto;
 
     & > span {
         &:hover {
@@ -59,23 +57,8 @@
     }
 }
 
-.mdl2-navbar-closed {
-    @include mixins.icons(colors.$black-100);
-    padding: 0.4rem;
-    margin-left: 1rem;
-
-    &::before {
-        content: "\e700";
-    }
-
-    &:hover {
-        cursor: pointer;
-        background-color: colors.$white-500;
-    }
-}
-
 .mdl2-calendar {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 24px;
     height: 24px;
@@ -86,7 +69,7 @@
 }
 
 .mdl2-favorite {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 24px;
     height: 24px;
@@ -97,7 +80,7 @@
 }
 
 .mdl2-brightness {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 24px;
     height: 24px;
@@ -108,7 +91,7 @@
 }
 
 .mdl2-contact {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 24px;
     height: 24px;
@@ -119,7 +102,7 @@
 }
 
 .mdl2-home {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 24px;
     height: 24px;
@@ -130,7 +113,7 @@
 }
 
 .mdl2-mail {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 58px;
     height: 48px;
@@ -141,7 +124,7 @@
 }
 
 .mdl2-people {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 58px;
     height: 48px;
@@ -152,7 +135,7 @@
 }
 
 .mdl2-attach {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 58px;
     height: 48px;
@@ -163,7 +146,7 @@
 }
 
 .mdl2-todo {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 58px;
     height: 48px;
@@ -174,7 +157,7 @@
 }
 
 .mdl2-calendar-bottom {
-    @include mixins.icons(colors.$black-200);
+    @include mixins.icons(colors.$gray-50);
     @include mixins.flexContainer();
     width: 58px;
     height: 48px;
@@ -206,7 +189,7 @@
     height: 24px;
 
     &::before {
-        content: "\f2c7";
+        content: "\e71d";
     }
 }
 
@@ -259,10 +242,14 @@
     @include mixins.flexContainer();
 }
 
+.shrink {
+    width: 85%;
+}
+
 .flexCenter {
     @include mixins.flexContainer(flex-start);
-    width: 100%;
     padding: 0.375rem 0;
+    width: 100%;
     padding-left: 0.75rem;
 
     &:hover {
@@ -279,6 +266,10 @@
     &::placeholder {
         color: colors.$blue-400;
         font-size: 0.87rem;
+    }
+
+    &:focus::placeholder {
+        color: colors.$gray-200;
     }
 }
 
@@ -298,6 +289,11 @@
     font-size: 0.9rem;
 }
 
+.toggle {
+    float: left;
+    margin-top: 1.25rem;
+}
+
 @media screen and (max-width: 1024px) {
     .mdl2-calendar-bottom,
     .mdl2-todo,
@@ -306,5 +302,13 @@
     .mdl2-mail {
         width: 40px;
         height: 48px;
+    }
+
+    .shrink {
+        width: 80%;
+    }
+
+    .group {
+        width: 20%;
     }
 }

@@ -1,8 +1,10 @@
 import Head from "next/head";
-import React from "react";
+// Components
+import AssignedToMe from "components/Main/TodosMenu/Sections/AssignedToMe";
+// Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function AssignedToMee() {
+function AssignedToMePage() {
     return (
         <>
             <Head>
@@ -13,9 +15,9 @@ function AssignedToMee() {
                 />
                 <title>Assigned to me - To Do</title>
             </Head>
-            <div style={{ float: "left" }}>assigned to me</div>
+            <AssignedToMe />
         </>
     );
 }
 
-export default AssignedToMee;
+export default AssignedToMePage;

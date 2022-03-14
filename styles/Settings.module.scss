@@ -65,7 +65,7 @@
 .block {
     display: block;
     width: fit-content;
-    color: colors.$black-300;
+    color: colors.$gray-50;
     font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 0.35rem;
@@ -123,8 +123,8 @@
 }
 
 .check:checked + label::before {
-    background-color: colors.$blue-400;
-    border-color: colors.$blue-400;
+    background-color: colors.$blue-550;
+    border-color: colors.$blue-550;
 }
 
 .align:hover .check:checked + label::after {

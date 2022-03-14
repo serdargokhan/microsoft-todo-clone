@@ -1,0 +1,88 @@
+@use "./colors";
+@use "./mixins";
+
+.container {
+    @include mixins.flexContainer(space-between, flex-start);
+    padding-top: 1.325rem;
+    color: colors.$gray-50;
+}
+
+.leftFlex {
+    @include mixins.flexContainer(center, flex-start);
+
+    & > p {
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: colors.$black-200;
+    }
+}
+
+.flex {
+    @include mixins.flexContainer();
+    padding: 0.3rem 0.5rem;
+
+    & span {
+        font-size: 0.9rem;
+    }
+
+    &:hover {
+        background-color: colors.$gray-400;
+        cursor: pointer;
+    }
+}
+
+.left {
+    @include mixins.flexContainer(flex-start, flex-start);
+    flex-direction: column;
+    padding-left: 1.6rem;
+}
+
+.right {
+    @include mixins.flexContainer(center, flex-start);
+    padding-right: 1.2rem;
+    margin-top: -0.15rem;
+}
+
+.date {
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.mdl2-dots {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 32px;
+    height: 32px;
+    margin-left: 0.625rem;
+
+    &::before {
+        content: "\e712";
+    }
+
+    &:hover {
+        background-color: colors.$gray-400;
+        cursor: pointer;
+    }
+}
+
+.mdl2-sort {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e8cb";
+    }
+}
+
+.mdl2-suggestions {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\ea80";
+    }
+}

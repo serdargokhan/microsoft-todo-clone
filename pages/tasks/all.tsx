@@ -1,8 +1,10 @@
 import Head from "next/head";
-import React from "react";
+// Components
+import All from "components/Main/TodosMenu/Sections/All";
+// Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function All() {
+function AllPage() {
     return (
         <>
             <Head>
@@ -13,9 +15,9 @@ function All() {
                 />
                 <title>All - To Do</title>
             </Head>
-            <div style={{ float: "left" }}>all</div>
+            <All />
         </>
     );
 }
 
-export default All;
+export default AllPage;

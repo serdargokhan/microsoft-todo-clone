@@ -1,8 +1,10 @@
 import Head from "next/head";
-import React from "react";
+// Components
+import Completed from "components/Main/TodosMenu/Sections/Completed";
+// Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function Completed() {
+function CompletedPage() {
     return (
         <>
             <Head>
@@ -13,9 +15,9 @@ function Completed() {
                 />
                 <title>Completed - To Do</title>
             </Head>
-            <div style={{ float: "left" }}>completed</div>
+            <Completed />
         </>
     );
 }
 
-export default Completed;
+export default CompletedPage;
