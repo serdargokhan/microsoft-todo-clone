@@ -19,7 +19,7 @@ function WhatIsNewSection({ onCloseNews }: Props) {
     return (
         <BgLayout>
             <div className={classes.head}>
-                <h3 className={classes.title}>What's new</h3>
+                <h3 className={classes.title}>What&apos;s new</h3>
                 <span
                     onClick={closeHandler}
                     className={classes["mdl2-cancel"]}
