@@ -1,5 +1,5 @@
-@use "./colors";
-@use "./mixins";
+@use "../colors";
+@use "../mixins";
 
 .navbar {
     background-color: colors.$blue-300;
@@ -46,7 +46,7 @@
 
 .middle {
     display: grid;
-    grid-template-columns: 80px 1fr auto;
+    grid-template-columns: 60px 1fr auto;
     align-items: center;
     overflow: hidden;
 }

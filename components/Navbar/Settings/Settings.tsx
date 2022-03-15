@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 // Context
 import { useCtx } from "components/context/SettingsContext";
 // CSS
-import classes from "styles/Settings.module.scss";
+import classes from "styles/Navbar/Settings.module.scss";
 // Components
-import BgLayout from "./BgLayout";
+import BgLayout from "../BgLayout";
 import SettingsComp from "./SettingsComp";
 // Images
 import TwitterIcon from "public/Settings/Twitter.svg";

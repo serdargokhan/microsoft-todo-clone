@@ -1,5 +1,5 @@
-@use "./colors";
-@use "./mixins";
+@use "../colors";
+@use "../mixins";
 
 /* SignupLayout file's CSS */
 
@@ -239,7 +239,7 @@
 
 @media screen and (min-width: 600px) {
     .background {
-        background-image: url("../public/User/userBackground.svg");
+        background-image: url("../../public/User/userBackground.svg");
         background-position: left;
         min-height: 100vh;
         @include mixins.flexContainer();

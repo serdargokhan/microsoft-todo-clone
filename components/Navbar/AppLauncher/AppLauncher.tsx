@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 // CSS
-import classes from "styles/AppLauncher.module.scss";
+import classes from "styles/Navbar/AppLauncher.module.scss";
 // Components
 import AppLauncherLayout from "./AppLauncherLayout";
 import AppLauncherContinue from "./AppLauncherContinue";

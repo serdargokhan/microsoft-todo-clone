@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 // CSS
-import classes from "styles/AppLauncher.module.scss";
+import classes from "styles/Navbar/AppLauncher.module.scss";
 // Components
 import Input from "components/utils/Input";
 import appList from "./Apps";

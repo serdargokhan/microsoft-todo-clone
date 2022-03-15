@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import Image from "next/image";
 // CSS
-import classes from "styles/Signup.module.scss";
+import classes from "styles/Signup/Signup.module.scss";
 // Images
 import MicrosoftLogo from "public/microsoftLogo.svg";
 

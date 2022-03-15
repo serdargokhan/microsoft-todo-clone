@@ -1,5 +1,5 @@
-@use "./colors";
-@use "./mixins";
+@use "../colors";
+@use "../mixins";
 
 .container {
     margin-top: 0.75rem;
@@ -107,6 +107,10 @@
             cursor: pointer;
         }
     }
+}
+
+.toggle {
+    color: colors.$gray-50;
 }
 
 .align:hover > label::before {

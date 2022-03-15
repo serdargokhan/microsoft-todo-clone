@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 // CSS
-import classes from "styles/MenuLayout.module.scss";
+import classes from "styles/Layout/MenuLayout.module.scss";
 // Hooks
 import useWindowDimension from "components/hooks/useWindowDimension";
 // Components

@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+// Context
+import { useCtx } from "components/context/SettingsContext";
 // CSS
-import classes from "styles/Navbar.module.scss";
+import classes from "styles/Navbar/Navbar.module.scss";
 // Custom Hooks
 import useWindowDimension from "components/hooks/useWindowDimension";
 // Components
@@ -10,13 +12,12 @@ import AppLauncher from "./AppLauncher/AppLauncher";
 import Help from "./Help";
 import WhatIsNewSection from "./WhatIsNewSection";
 import Portal from "components/portals/Portal";
+import Settings from "./Settings/Settings";
+import Profile from "./Profile";
 // Images
 import DotsIcon from "public/Navbar/DotsIcon.svg";
 import SearchIcon from "public/Navbar/SearchIcon.svg";
 import CloseIcon from "public/Navbar/CloseIcon.svg";
-import Settings from "./Settings";
-import Profile from "./Profile";
-import { useCtx } from "components/context/SettingsContext";
 
 function Navbar() {
     const [focus, setFocus] = useState(false);

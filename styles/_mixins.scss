@@ -1,3 +1,5 @@
+@use "./colors";
+
 @mixin flexContainer($jc: center, $ai: center) {
     display: flex;
     justify-content: $jc;
@@ -15,4 +17,33 @@
     font-family: "Segoe MDL2 Assets";
     font-size: $fs;
     color: $cl;
+}
+
+@mixin tooltip($width, $pos, $posValue) {
+    visibility: hidden;
+    width: $width;
+    font-weight: 400;
+    font-size: 0.9rem;
+    background-color: colors.$white;
+    color: colors.$gray-50 !important;
+    text-align: center;
+    border-radius: 0.1rem;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1000;
+    #{$pos}: $posValue;
+    transition: none;
+    outline: none;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
+}
+
+@mixin tooltipAfter() {
+    content: "";
+    position: absolute;
+    bottom: -58%;
+    left: 42.5%;
+    margin-top: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: colors.$white transparent transparent transparent;
 }

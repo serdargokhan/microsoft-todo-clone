@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // Context
 import { useCtx } from "components/context/SettingsContext";
 // CSS
-import classes from "styles/Settings.module.scss";
+import classes from "styles/Navbar/Settings.module.scss";
 
 interface Props {
     item: {
@@ -63,7 +63,7 @@ function SettingsComp({ item }: Props) {
                 className={classes.check}
             />
 
-            <label htmlFor={item._id}>
+            <label className={classes.toggle} htmlFor={item._id}>
                 {
                     // @ts-ignore
                     item[item._id] ? "On" : "Off"

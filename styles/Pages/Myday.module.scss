@@ -1,5 +1,5 @@
-@use "./colors";
-@use "./mixins";
+@use "../colors";
+@use "../mixins";
 
 .container {
     @include mixins.flexContainer(space-between, flex-start);
@@ -9,6 +9,7 @@
 
 .leftFlex {
     @include mixins.flexContainer(center, flex-start);
+    position: relative;
 
     & > p {
         font-weight: 600;
@@ -20,6 +21,7 @@
 .flex {
     @include mixins.flexContainer();
     padding: 0.3rem 0.5rem;
+    position: relative;
 
     & span {
         font-size: 0.9rem;
@@ -28,6 +30,12 @@
     &:hover {
         background-color: colors.$gray-400;
         cursor: pointer;
+
+        .sortTooltip,
+        .suggestionsTooltip {
+            visibility: visible;
+            transition: visibility 0.3s ease 0.2s;
+        }
     }
 }
 
@@ -48,34 +56,6 @@
     font-weight: 300;
 }
 
-.mdl2-dots {
-    @include mixins.icons(colors.$black-200);
-    @include mixins.flexContainer();
-    width: 32px;
-    height: 32px;
-    margin-left: 0.625rem;
-
-    &::before {
-        content: "\e712";
-    }
-
-    &:hover {
-        background-color: colors.$gray-400;
-        cursor: pointer;
-    }
-}
-
-.mdl2-sort {
-    @include mixins.icons(colors.$black-200);
-    @include mixins.flexContainer();
-    width: 24px;
-    height: 24px;
-
-    &::before {
-        content: "\e8cb";
-    }
-}
-
 .mdl2-suggestions {
     @include mixins.icons(colors.$black-200);
     @include mixins.flexContainer();
@@ -84,5 +64,22 @@
 
     &::before {
         content: "\ea80";
+    }
+}
+
+.sortTooltip {
+    @include mixins.tooltip(50px, bottom, 35px);
+
+    &::after {
+        @include mixins.tooltipAfter();
+        left: 33% !important;
+    }
+}
+
+.suggestionsTooltip {
+    @include mixins.tooltip(90px, bottom, 35px);
+
+    &::after {
+        @include mixins.tooltipAfter();
     }
 }

@@ -1,0 +1,13 @@
+@use "../colors";
+@use "../mixins";
+
+.container {
+    @include mixins.flexContainer(space-between, flex-start);
+    padding-top: 1.325rem;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: colors.$blue-550;
+}

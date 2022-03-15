@@ -1,5 +1,5 @@
-@use "./colors";
-@use "./mixins";
+@use "../colors";
+@use "../mixins";
 
 .container {
     @include mixins.flexContainer(center, flex-start);

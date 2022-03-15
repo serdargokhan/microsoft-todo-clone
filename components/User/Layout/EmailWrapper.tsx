@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 // CSS
-import classes from "styles/Signup.module.scss";
+import classes from "styles/Signup/Signup.module.scss";
 // Components
 import Button from "components/utils/Button";
 import ErrorMessage from "components/UI/ErrorMessage";

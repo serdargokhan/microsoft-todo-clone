@@ -1,0 +1,86 @@
+@use "../colors";
+@use "../mixins";
+
+.container {
+    @include mixins.flexContainer(flex-start, flex-start);
+    flex-direction: column;
+    padding-top: 1.325rem;
+}
+
+.topFlex {
+    @include mixins.flexContainer();
+    padding-left: 1.6rem;
+}
+
+.flex {
+    @include mixins.flexContainer();
+    padding: 0.3rem 0.5rem;
+    margin-right: 1.375rem;
+    position: relative;
+
+    & span {
+        font-size: 0.9rem;
+        color: colors.$blue-550;
+    }
+
+    &:hover {
+        background-color: colors.$gray-400;
+        cursor: pointer;
+
+        .sortTooltip {
+            visibility: visible;
+            transition: visibility 0.3s ease 0.2s;
+        }
+    }
+}
+
+.mdl2-dots {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 32px;
+    height: 32px;
+    margin-left: 0.625rem;
+    position: relative;
+
+    &::before {
+        content: "\e712";
+    }
+
+    &:hover {
+        background-color: colors.$gray-400;
+        cursor: pointer;
+
+        .listTooltip {
+            visibility: visible;
+            transition: visibility 0.3s ease 0.2s;
+        }
+    }
+}
+
+.mdl2-sort {
+    @include mixins.icons(colors.$black-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e8cb";
+    }
+}
+
+.sortTooltip {
+    @include mixins.tooltip(50px, bottom, 35px);
+
+    &::after {
+        @include mixins.tooltipAfter();
+        left: 33% !important;
+    }
+}
+
+.listTooltip {
+    @include mixins.tooltip(120px, bottom, 35px);
+
+    &::after {
+        @include mixins.tooltipAfter();
+    }
+}

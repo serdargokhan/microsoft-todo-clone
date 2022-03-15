@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 // CSS
-import classes from "styles/WhatIsNewSection.module.scss";
+import classes from "styles/Navbar/WhatIsNewSection.module.scss";
 // Components
 import Button from "components/utils/Button";
 import BgLayout from "./BgLayout";
@@ -72,7 +72,7 @@ function WhatIsNewSection({ onCloseNews }: Props) {
                         </p>
                         <p className={classes.message}>
                             Assign categories to organize your tasks. Head to a
-                            task’s detail view to try it out.
+                            task&apos;s detail view to try it out.
                         </p>
                         <Button className={classes.btn} title="Learn more" />
                     </div>

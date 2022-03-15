@@ -1,6 +1,6 @@
 import React from "react";
 // CSS
-import classes from "styles/Help.module.scss";
+import classes from "styles/Navbar/Help.module.scss";
 // Components
 import Button from "components/utils/Button";
 import BgLayout from "./BgLayout";

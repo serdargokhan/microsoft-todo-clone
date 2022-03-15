@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 // Context
 import { useCtx } from "components/context/SettingsContext";
 // CSS
-import classes from "styles/Profile.module.scss";
+import classes from "styles/Navbar/Profile.module.scss";
 // Components
 import Button from "components/utils/Button";
 // Images

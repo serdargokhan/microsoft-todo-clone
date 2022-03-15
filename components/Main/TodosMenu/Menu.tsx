@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 // CSS
-import classes from "styles/Menu.module.scss";
+import classes from "styles/Menu/Menu.module.scss";
 // Components
 import MenuLayout from "./MenuLayout";
 import Input from "components/utils/Input";

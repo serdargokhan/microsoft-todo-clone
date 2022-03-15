@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 // CSS
-import classes from "styles/BgLayout.module.scss";
+import classes from "styles/Layout/BgLayout.module.scss";
 
 interface Props {
     children: ReactNode;

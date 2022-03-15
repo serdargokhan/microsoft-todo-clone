@@ -1,0 +1,70 @@
+@use "../colors";
+@use "../mixins";
+
+.container {
+    @include mixins.flexContainer(space-between, flex-start);
+    padding-top: 1.325rem;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: colors.$blue-550;
+}
+
+.flex {
+    @include mixins.flexContainer();
+    padding: 0.3rem 0.5rem;
+    position: relative;
+
+    & span {
+        font-size: 0.9rem;
+        color: colors.$blue-550;
+    }
+
+    &:hover {
+        background-color: colors.$gray-400;
+        cursor: pointer;
+
+        .sortTooltip,
+        .shareTooltip {
+            visibility: visible;
+            transition: visibility 0.3s ease 0.2s;
+        }
+    }
+}
+
+.right {
+    @include mixins.flexContainer(center, flex-start);
+    padding-right: 1.2rem;
+    margin-top: -0.15rem;
+}
+
+.mdl2-share {
+    @include mixins.icons(colors.$blue-550);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        content: "\e8fa";
+    }
+}
+
+.sortTooltip {
+    @include mixins.tooltip(50px, bottom, 35px);
+
+    &::after {
+        @include mixins.tooltipAfter();
+        left: 33% !important;
+    }
+}
+
+.shareTooltip {
+    @include mixins.tooltip(50px, bottom, 35px);
+
+    &::after {
+        @include mixins.tooltipAfter();
+        left: 33% !important;
+    }
+}

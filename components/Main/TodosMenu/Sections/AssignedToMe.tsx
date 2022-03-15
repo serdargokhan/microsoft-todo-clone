@@ -1,6 +1,7 @@
 import Image from "next/image";
 // CSS
-import classes from "styles/Assignedtome.module.scss";
+import classes from "styles/Pages/Assignedtome.module.scss";
+import wrapperClass from "styles/Pages/Sections.module.scss";
 // Images
 import AssignedIcon from "public/Assigned.svg";
 
@@ -10,7 +11,11 @@ function AssignedToMe() {
             <div className={classes.container}>
                 <div className={classes.topFlex}>
                     <p>Assigned to me</p>
-                    <span className={classes["mdl2-dots"]}></span>
+                    <div className={wrapperClass["mdl2-dots"]}>
+                        <span className={wrapperClass.listTooltip}>
+                            List options menu
+                        </span>
+                    </div>
                 </div>
             </div>
             <div className={classes.bottomFlex}>
