@@ -21,7 +21,7 @@
 .bottomFlex {
     @include mixins.flexContainer();
     flex-direction: column;
-    margin-top: 7rem;
+    margin-top: 10rem;
 
     & > p {
         font-weight: 600;

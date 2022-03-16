@@ -1,6 +1,6 @@
 import Head from "next/head";
 // Components
-import MyDay from "components/Main/TodosMenu/Sections/MyDay";
+import MyDay from "components/Main/Sections/MyDay";
 // Images
 import TodoIcon from "public/TodoIcon.svg";
 

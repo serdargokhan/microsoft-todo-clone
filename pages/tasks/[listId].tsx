@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 // Components
-import CustomList from "components/Main/TodosMenu/Sections/CustomList";
+import CustomList from "components/Main/Sections/CustomList";
 // Images
 import TodoIcon from "public/TodoIcon.svg";
 

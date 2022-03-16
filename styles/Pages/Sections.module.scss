@@ -12,6 +12,10 @@
     padding-left: 1.6rem;
 }
 
+.modal {
+    position: relative;
+}
+
 .flex {
     @include mixins.flexContainer();
     padding: 0.3rem 0.5rem;
@@ -53,6 +57,12 @@
         .listTooltip {
             visibility: visible;
             transition: visibility 0.3s ease 0.2s;
+        }
+    }
+
+    &:active {
+        .listTooltip {
+            visibility: hidden;
         }
     }
 }

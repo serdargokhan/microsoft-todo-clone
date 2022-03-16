@@ -1,6 +1,6 @@
 import Head from "next/head";
 // Components
-import Completed from "components/Main/TodosMenu/Sections/Completed";
+import Completed from "components/Main/Sections/Completed";
 // Images
 import TodoIcon from "public/TodoIcon.svg";
 

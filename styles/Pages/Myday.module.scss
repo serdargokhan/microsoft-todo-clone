@@ -7,9 +7,12 @@
     color: colors.$gray-50;
 }
 
+.modal {
+    position: relative;
+}
+
 .leftFlex {
     @include mixins.flexContainer(center, flex-start);
-    position: relative;
 
     & > p {
         font-weight: 600;

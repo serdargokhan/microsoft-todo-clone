@@ -1,0 +1,119 @@
+@use "../colors";
+@use "../mixins";
+
+.listOptionMenu,
+.sortOptionMenu {
+    @include mixins.flexContainer();
+    flex-direction: column;
+    top: 100%;
+    box-shadow: 2px 2px 6px 0px rgba($color: colors.$black, $alpha: 0.2);
+    background-color: colors.$white;
+    position: absolute;
+    width: 200px;
+}
+
+.listOptionMenu {
+    left: -175%;
+}
+
+.sortOptionMenu {
+    left: -100%;
+}
+
+.moveLeft {
+    left: -150%;
+}
+
+.title {
+    color: colors.$black-200;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid colors.$gray-600;
+    width: 200px;
+    text-align: center;
+}
+
+.info {
+    font-size: 0.9rem;
+    color: colors.$black-200;
+    margin-left: 0.75rem;
+}
+
+.listFlex {
+    @include mixins.flexContainer(flex-start);
+    flex-direction: column;
+    width: 100%;
+    margin-block: 0.4rem;
+}
+
+.mdl2-printer,
+.mdl2-theme,
+.mdl2-date,
+.mdl2-calendar,
+.mdl2-importance,
+.mdl2-sort,
+.mdl2-light,
+.mdl2-chevronRight {
+    @include mixins.icons(colors.$gray-200);
+    @include mixins.flexContainer();
+    width: 24px;
+    height: 24px;
+}
+
+.mdl2-chevronRight {
+    margin-left: auto;
+}
+
+.mdl2-printer::before {
+    content: "\e749";
+}
+
+.mdl2-theme::before {
+    content: "\e790";
+}
+
+.mdl2-importance::before {
+    content: "\e734";
+}
+
+.mdl2-calendar::before {
+    content: "\e787";
+}
+
+.mdl2-light::before {
+    content: "\e706";
+}
+
+.mdl2-sort::before {
+    content: "\e8cb";
+}
+
+.mdl2-date::before {
+    content: "\e8bf";
+}
+
+.mdl2-chevronRight::before {
+    content: "\e974";
+}
+
+.childFlex {
+    @include mixins.flexContainer(flex-start);
+    padding: 0.4rem;
+    width: 100%;
+
+    &:hover {
+        background-color: colors.$gray-600;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sortOptionMenu {
+        left: -270%;
+    }
+
+    .moveLeft {
+        left: -250%;
+    }
+}
