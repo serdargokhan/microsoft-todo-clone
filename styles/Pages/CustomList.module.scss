@@ -68,3 +68,10 @@
         left: 33% !important;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .title {
+        max-width: 135px;
+        overflow: auto;
+    }
+}

@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { NextApiRequest, NextApiResponse } from "next";
 import connectToDatabase from "utils/mongodb";
 
@@ -29,6 +30,25 @@ export default async function handler(
 
     if (req.method === "PUT") {
         try {
+            if (req.body.type === "ADD_LIST") {
+                const { _id, createdAt, listName } = req.body;
+
+                const data = await db.collection("Todos").updateOne(
+                    { _id: _id },
+                    {
+                        $addToSet: {
+                            customList: {
+                                _id: new ObjectId(),
+                                listName: listName,
+                                createdAt: createdAt,
+                            },
+                        },
+                    }
+                );
+
+                res.status(201).json(data);
+            }
+
             const { _id, id, change } = req.body;
 
             let set = `settings.$[el].${id}`;

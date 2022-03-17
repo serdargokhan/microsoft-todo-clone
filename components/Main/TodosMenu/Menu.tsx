@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ObjectID } from "bson";
 // CSS
 import classes from "styles/Menu/Menu.module.scss";
 // Components
@@ -12,17 +13,24 @@ import InfiniteIcon from "public/Menu/Infinite.svg";
 import CompleteIcon from "public/Menu/Complete.svg";
 import GroupIcon from "public/Menu/Group.svg";
 
+type Data = {
+    listName: string;
+    _id: ObjectID;
+}[];
+
 function Menu() {
     const [inputText, setInputText] = useState("");
     const [list, setList] = useState("");
     const [submit, setSubmit] = useState(false);
     const [toggle, setToggle] = useState(true);
+    const [reqFinished, setReqFinished] = useState(false);
+    const [data, setData] = useState<Data>([]);
 
     const router = useRouter();
 
     function addNewListHandler(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setSubmit((prev) => !prev);
+        setSubmit(true);
         setList(inputText);
         setInputText("");
     }
@@ -31,10 +39,10 @@ function Menu() {
         setInputText(e.target.value);
     }
 
-    /*  useEffect(() => {
+    useEffect(() => {
         async function addNewList() {
             try {
-                await fetch("/api/lists", {
+                await fetch("/api/todos", {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -42,15 +50,33 @@ function Menu() {
                     body: JSON.stringify({
                         _id: localStorage.getItem("userUid"),
                         createdAt: new Date().toLocaleString(),
-                        listName: inputText ? inputText : "Untitled List",
+                        listName: list ? list : "Untitled List",
+                        type: "ADD_LIST",
                     }),
                 });
+
+                setReqFinished(true);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        if (submit) addNewList();
+    }, [submit]);
+
+    useEffect(() => {
+        async function addNewList() {
+            try {
+                const res = await fetch("/api/todos");
+                const data = await res.json();
+                setData(data[0].customList);
+                console.log(data);
+                setReqFinished(false);
             } catch (err) {
                 console.error(err);
             }
         }
         addNewList();
-    }, [submit]); */
+    }, [reqFinished]);
 
     function toggleHandler() {
         setToggle((prev) => !prev);
@@ -174,16 +200,38 @@ function Menu() {
                         </div>
                     </div>
 
-                    {/* Dynamic list adding will come here */}
-
                     <form
                         onSubmit={addNewListHandler}
                         className={classes.addList}
                     >
-                        <div className={classes.flexCenter}>
-                            <span className={classes["mdl2-bulletList"]}></span>
-                            <p className={classes.lists}>{list}</p>
-                        </div>
+                        {data &&
+                            data.map((item, index) => {
+                                return (
+                                    <Link
+                                        href={`/tasks/${item._id.toString()}`}
+                                    >
+                                        <div
+                                            className={classes.flexCenter}
+                                            key={index}
+                                            style={{ cursor: "pointer" }}
+                                        >
+                                            <>
+                                                <span
+                                                    className={
+                                                        classes[
+                                                            "mdl2-bulletList"
+                                                        ]
+                                                    }
+                                                ></span>
+                                                <p className={classes.lists}>
+                                                    {item.listName}
+                                                </p>
+                                            </>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+
                         <div className={classes.outer}>
                             <div
                                 className={`${classes.flexCenter} ${classes.shrink}`}
