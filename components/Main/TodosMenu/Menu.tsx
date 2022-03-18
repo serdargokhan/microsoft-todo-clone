@@ -14,8 +14,11 @@ import CompleteIcon from "public/Menu/Complete.svg";
 import GroupIcon from "public/Menu/Group.svg";
 
 type Data = {
-    listName: string;
     _id: ObjectID;
+    customList: {
+        _id: ObjectID;
+        listName: string;
+    }[];
 }[];
 
 function Menu() {
@@ -56,6 +59,7 @@ function Menu() {
                 });
 
                 setReqFinished(true);
+                setSubmit(false);
             } catch (err) {
                 console.error(err);
             }
@@ -68,8 +72,7 @@ function Menu() {
             try {
                 const res = await fetch("/api/todos");
                 const data = await res.json();
-                setData(data[0].customList);
-                console.log(data);
+                setData(data);
                 setReqFinished(false);
             } catch (err) {
                 console.error(err);
@@ -205,31 +208,48 @@ function Menu() {
                         className={classes.addList}
                     >
                         {data &&
-                            data.map((item, index) => {
-                                return (
-                                    <Link
-                                        href={`/tasks/${item._id.toString()}`}
-                                    >
-                                        <div
-                                            className={classes.flexCenter}
-                                            key={index}
-                                            style={{ cursor: "pointer" }}
-                                        >
-                                            <>
-                                                <span
-                                                    className={
-                                                        classes[
-                                                            "mdl2-bulletList"
-                                                        ]
-                                                    }
-                                                ></span>
-                                                <p className={classes.lists}>
-                                                    {item.listName}
-                                                </p>
-                                            </>
-                                        </div>
-                                    </Link>
-                                );
+                            data.map((item) => {
+                                if (
+                                    item._id.toString() ===
+                                    localStorage.getItem("userUid")
+                                ) {
+                                    return item.customList?.map((el, index) => {
+                                        return (
+                                            <div
+                                                style={{ width: "100%" }}
+                                                key={index}
+                                            >
+                                                <Link
+                                                    href={`/tasks/${el._id.toString()}`}
+                                                >
+                                                    <div
+                                                        className={
+                                                            classes.flexCenter
+                                                        }
+                                                        style={{
+                                                            cursor: "pointer",
+                                                        }}
+                                                    >
+                                                        <span
+                                                            className={
+                                                                classes[
+                                                                    "mdl2-bulletList"
+                                                                ]
+                                                            }
+                                                        ></span>
+                                                        <p
+                                                            className={
+                                                                classes.lists
+                                                            }
+                                                        >
+                                                            {el.listName}
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        );
+                                    });
+                                }
                             })}
 
                         <div className={classes.outer}>

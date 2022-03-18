@@ -12,6 +12,10 @@
     color: colors.$blue-550;
 }
 
+.modal {
+    position: relative;
+}
+
 .flex {
     @include mixins.flexContainer();
     padding: 0.3rem 0.5rem;
@@ -69,7 +73,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
     .title {
         max-width: 135px;
         overflow: auto;

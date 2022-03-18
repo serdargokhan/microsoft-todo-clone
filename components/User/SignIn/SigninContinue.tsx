@@ -15,6 +15,7 @@ import { settingsArray } from "components/assets/SettingsData";
 // Firebase
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "components/firebase/Firebase";
+import { setCookies } from "cookies-next";
 
 function SigninContinue() {
     const [click, setClick] = useState(false);
@@ -88,6 +89,7 @@ function SigninContinue() {
                             }),
                         });
                         localStorage.setItem("userUid", user.uid);
+                        setCookies("uid", user.uid);
                         setLoading(false);
                         router.push("/");
                         reset();

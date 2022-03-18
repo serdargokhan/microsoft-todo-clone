@@ -1,12 +1,31 @@
+import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
+import { ParsedUrlQuery } from "querystring";
+import { GetServerSidePropsContext } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
 // Components
 import CustomList from "components/Main/Sections/CustomList";
 // Images
 import TodoIcon from "public/TodoIcon.svg";
 
-function CustomListsPages() {
-    const router = useRouter();
+interface Props {
+    id: string;
+    url: ParsedUrlQuery;
+    data: {}[];
+}
+
+function CustomListsPages({ id, data, url }: Props) {
+    const [head, setHead] = useState("");
+
+    useEffect(() => {
+        data.map((item: any) => {
+            if (item._id == id) {
+                return item.customList.map((el: any) => {
+                    if (el._id === url.listId) setHead(el.listName);
+                });
+            }
+        });
+    }, []);
 
     return (
         <>
@@ -16,11 +35,29 @@ function CustomListsPages() {
                     type="image/x-icon"
                     href={TodoIcon.src}
                 />
-                <title>{router.query.listId} - To Do</title>
+                <title>{head} - To Do</title>
             </Head>
-            <CustomList />
+            <CustomList title={head} />
         </>
     );
 }
 
 export default CustomListsPages;
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const { req, res } = context;
+    const uid = getCookie("uid", { req, res });
+
+    const url = context.params;
+
+    const response = await fetch("http://localhost:3000/api/todos");
+    const data = await response.json();
+
+    return {
+        props: {
+            id: uid,
+            data: data,
+            url: url,
+        },
+    };
+}
