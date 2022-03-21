@@ -25,7 +25,7 @@ function CustomListsPages({ id, data, url }: Props) {
                 });
             }
         });
-    }, []);
+    }, [data]);
 
     return (
         <>

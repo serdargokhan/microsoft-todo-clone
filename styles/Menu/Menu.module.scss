@@ -231,6 +231,18 @@
     }
 }
 
+.activeLists {
+    background-color: colors.$gray-400;
+    &:hover {
+        background-color: colors.$gray-400 !important;
+    }
+
+    & > p {
+        font-weight: 600 !important;
+        color: colors.$blue-600 !important;
+    }
+}
+
 .addList {
     @include mixins.flexContainer(space-between, flex-start);
     margin-top: 1.2rem;

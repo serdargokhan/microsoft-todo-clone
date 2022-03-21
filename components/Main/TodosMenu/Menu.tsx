@@ -8,6 +8,7 @@ import classes from "styles/Menu/Menu.module.scss";
 // Components
 import MenuLayout from "./MenuLayout";
 import Input from "components/utils/Input";
+import ClickMenu from "../RightClick/ClickMenu";
 // Images
 import InfiniteIcon from "public/Menu/Infinite.svg";
 import CompleteIcon from "public/Menu/Complete.svg";
@@ -21,6 +22,11 @@ type Data = {
     }[];
 }[];
 
+interface Point {
+    x: number;
+    y: number;
+}
+
 function Menu() {
     const [inputText, setInputText] = useState("");
     const [list, setList] = useState("");
@@ -28,6 +34,12 @@ function Menu() {
     const [toggle, setToggle] = useState(true);
     const [reqFinished, setReqFinished] = useState(false);
     const [data, setData] = useState<Data>([]);
+    const [points, setPoints] = useState<Point>({
+        x: 0,
+        y: 0,
+    });
+    const [show, setShow] = useState(false);
+    const [id, setId] = useState("");
 
     const router = useRouter();
 
@@ -81,12 +93,46 @@ function Menu() {
         addNewList();
     }, [reqFinished]);
 
+    useEffect(() => {
+        document.addEventListener("click", () => {
+            setShow(false);
+        });
+
+        return () => {
+            document.removeEventListener("click", () => {});
+        };
+    }, []);
+
     function toggleHandler() {
         setToggle((prev) => !prev);
     }
 
+    function listsClickHandler(e: React.MouseEvent<HTMLDivElement>) {
+        console.log(e.currentTarget.id);
+    }
+
+    function rightClickHandler(e: React.MouseEvent<HTMLDivElement>) {
+        e.preventDefault();
+        router.push(`/tasks/${e.currentTarget.id}`);
+        setId(e.currentTarget.id);
+        setPoints({ x: e.pageX, y: e.pageY });
+        setShow(true);
+    }
+
     return (
         <>
+            {show && (
+                <div
+                    style={{
+                        position: "absolute",
+                        zIndex: "1000",
+                        top: points.y,
+                        left: points.x,
+                    }}
+                >
+                    <ClickMenu id={id} />
+                </div>
+            )}
             {!toggle && (
                 <span
                     onClick={toggleHandler}
@@ -224,11 +270,22 @@ function Menu() {
                                                 >
                                                     <div
                                                         className={
-                                                            classes.flexCenter
+                                                            router.query
+                                                                .listId ===
+                                                            `${el._id}`
+                                                                ? `${classes.flexCenter} ${classes.activeLists}`
+                                                                : classes.flexCenter
                                                         }
                                                         style={{
                                                             cursor: "pointer",
                                                         }}
+                                                        onClick={
+                                                            listsClickHandler
+                                                        }
+                                                        onContextMenu={
+                                                            rightClickHandler
+                                                        }
+                                                        id={el._id.toString()}
                                                     >
                                                         <span
                                                             className={
