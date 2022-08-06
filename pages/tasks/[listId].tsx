@@ -50,7 +50,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const url = context.params;
 
-    const response = await fetch("http://localhost:3000/api/todos");
+    const BASE_URL =
+        process.env.NODE_ENV === "development"
+            ? "http://localhost:3000/api/todos"
+            : "https://serdargokhan-microsoft-todo.vercel.app/api/todos";
+
+    const response = await fetch(BASE_URL);
     const data = await response.json();
 
     return {
