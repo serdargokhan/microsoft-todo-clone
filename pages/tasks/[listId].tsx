@@ -44,7 +44,7 @@ function CustomListsPages({ id, data, url }: Props) {
 
 export default CustomListsPages;
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+/* export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { req, res } = context;
     const uid = getCookie("uid", { req, res });
 
@@ -62,4 +62,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             url: url,
         },
     };
-}
+} */
